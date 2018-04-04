@@ -1,0 +1,27 @@
+body {
+    font-family: sans-serif;
+}
+#header {
+    background-color:rgb(219, 219, 185);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 10ex;
+    text-align: center;
+}
+#game {
+    background-color: rgb(203, 238, 199);
+    position: fixed;
+    top: 10ex;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.paddle {
+    background-color: red;
+    position: fixed;
+    bottom: 5px;
+    width: 10%;
+    height: 3ex;
+}
