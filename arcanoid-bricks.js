@@ -24,5 +24,18 @@
         this.length = bricks_list.length;
     }
 
+    function drawBricks()
+    {
+        for(var i = 0;i<this.state.brick.length;++i){
+            this.brick_class = $('<div>').addClass('brick');
+            this.brick_class.appendTo(this.container);
+            pos_x = this.state.brick[i].pos_x;
+            pos_y = this.state.brick[i].pos_y;
+            this.brick_class.offset(this.toScreen(pos_x,pos_y));
+        }
+    }
+
+    arcanoid.GamePainter.addItemPainter(drawBricks)
+
     arcanoid.Bricks = Bricks
 })()

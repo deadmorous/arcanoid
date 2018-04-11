@@ -18,20 +18,3 @@ body {
     left: 0;
     right: 0;
 }
-.paddle {
-    background-color: red;
-    position: fixed;
-    bottom: 5px;
-    width: 10%;
-    height: 3ex;
-}
-
-.brick{
-    background-color: blueviolet;
-    position: fixed;
-    top: 40px;
-    left: 20px;
-    width: 10%;
-    height: 10%;
-    border:1px solid black
-}
