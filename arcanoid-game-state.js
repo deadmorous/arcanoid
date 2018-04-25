@@ -14,6 +14,7 @@
 
         this.paddle = new arcanoid.Paddle(this)
         this.brick = new arcanoid.Bricks(bricks_list)
+        this.ball = new arcanoid.Ball()
     }
     GameState.prototype.next = function(dt)
     {

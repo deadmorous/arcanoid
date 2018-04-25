@@ -1,15 +1,15 @@
 (function() {
-    function ball()
+    function Ball()
     {
         this.speed = 0
         this.pos = 2
     }
     Ball.speedInc = 1
-    ball.prototype.incSpeed = function() {
-        this.speed += ball.speedInc
+    Ball.prototype.incSpeed = function() {
+        this.speed += Ball.speedInc
     }
-    ball.prototype.decSpeed = function() {
-        this.speed -= ball.speedInc
+    Ball.prototype.decSpeed = function() {
+        this.speed -= Ball.speedInc
     }
-    arcanoid.ball = ball
+    arcanoid.Ball = Ball
 })()
