@@ -1,9 +1,9 @@
 (function() {
     function Ball(gameState)
     {
-        this.speed = [0, 0.01,0.5]
-        this.pos = [0.55, 0.965]
-        this.radius = 0.03
+        this.speed = [0.1, -0.1]
+        this.pos = [0.55, 0.955]
+        this.radius = 0.015
         arcanoid.GamePainter.created.handle(function(painter) {
             gameState.ballMoved.handle(
                 positionBall.bind(painter))
