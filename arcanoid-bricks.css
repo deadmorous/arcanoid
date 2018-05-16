@@ -7,3 +7,7 @@
     height: 10%;
     border:1px solid black
 }
+
+.dying-brick {
+    border: 3px solid black;
+}

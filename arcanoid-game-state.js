@@ -14,7 +14,7 @@
         this.contactBallBrick = new arcanoid.Event
         
         this.paddle = new arcanoid.Paddle(this)
-        this.bricks = new arcanoid.Bricks(this,bricks_list)
+        this.bricks = arcanoid.makeBricks(this,bricks_list)
         this.ball = new arcanoid.Ball(this)
     }
     GameState.prototype.next = function(dt)

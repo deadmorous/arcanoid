@@ -19,9 +19,11 @@
 
     function drawBall()
     {
+        var ballSize = this.state.ball.radius*200+'%'
         this.ball = $('<div>')
             .addClass('ball')
             .text('O')
+            .css({width: ballSize, height: ballSize})
             .appendTo(this.container)
         positionBall.call(this)
     }
