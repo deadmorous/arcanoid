@@ -1,19 +1,16 @@
 (function(){
 
     function Score(gameState){
-        this.pos = [0.9, 0.9]
-        this.score = 0
-        
+        this.score = score
         gameState.contactBallBrick.handle(
-            function(score){
-                score += score
-            }
+       
         )}
+        
         function drawScore(){
         
-        this.ball = $('<div>')
-            .addClass('ball')
-            .text("Score:"+ score)
+        this.score = $('<div>')
+            .addClass('score')
+            .text('Score')
             .appendTo(this.container)
     }
 
