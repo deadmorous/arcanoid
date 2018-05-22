@@ -9,5 +9,6 @@
 }
 
 .dying-brick {
-    border: 3px solid black;
+    background:url(http://kartinki.info/uploads/posts/2017-01/1483646346_2578.gif) 5% 5% fixed; 
+    background-size: cover;
 }
