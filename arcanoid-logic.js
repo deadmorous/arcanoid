@@ -1,7 +1,7 @@
 (function(){
 
     function Score(gameState){
-        this.score = score
+        this.score = 0
         gameState.contactBallBrick.handle(
        
         )}
@@ -18,6 +18,6 @@
 
     arcanoid.Score = Score
 
-    })
+    })()
 
    
