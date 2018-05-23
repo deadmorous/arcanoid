@@ -9,6 +9,10 @@
         
         this.paddle = new arcanoid.Paddle(this)
         arcanoid.makeRound(this,roundNumber)
+<<<<<<< HEAD
+=======
+        //this.bricks = arcanoid.makeBricks(this,bricks_list)
+>>>>>>> a7c8dc54d512590d7b3958c4ef65e454be4591ca
         this.ball = new arcanoid.Ball(this)
     }
     GameState.prototype.next = function(dt)
