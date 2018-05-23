@@ -94,7 +94,7 @@
             {
                 if (k[i].substr(j, 1) == '1')
                 {
-                    bricks_list[i] = {'x':col,'y':ro}
+                    bricks_list.push({'x':col,'y':ro})
                 }
                 col = col + 0.1              
             }
