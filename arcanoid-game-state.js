@@ -2,27 +2,13 @@
     function GameState()
     {
         var roundNumber = 1;
-        //var bricks_list = [];
-
-        /*bricks_list[0]={'x':0.1,'y':0.9};
-        bricks_list[1]={'x':0.9,'y':0};
-        bricks_list[2]={'x':0.85,'y':0.9};
-        bricks_list[3]={'x':0.5,'y':0.5};
-        bricks_list[4]={'x':0.7,'y':0.3};
-        bricks_list[5]={'x':0.6,'y':0.7};
-        bricks_list[6]={'x':0.0,'y':0.0};
-        bricks_list[7]={'x':0.1,'y':0.0};
-        bricks_list[8]={'x':0.2,'y':0.0};
-        bricks_list[9]={'x':0.3,'y':0.0};
-        bricks_list[10]={'x':0.4,'y':0.0};*/
         // Important: Events are created first!
         this.paddleMoved = new arcanoid.Event
         this.ballMoved = new arcanoid.Event
         this.contactBallBrick = new arcanoid.Event
         
         this.paddle = new arcanoid.Paddle(this)
-        this.round = arcanoid.makeRound(this,roundNumber)
-        //this.bricks = arcanoid.makeBricks(this,bricks_list)
+        arcanoid.makeRound(this,roundNumber)
         this.ball = new arcanoid.Ball(this)
     }
     GameState.prototype.next = function(dt)
