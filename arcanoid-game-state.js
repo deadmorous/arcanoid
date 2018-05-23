@@ -21,7 +21,7 @@
         this.contactBallBrick = new arcanoid.Event
         
         this.paddle = new arcanoid.Paddle(this)
-        this.round = arcanoid.makeRound(this,roundNumber)
+        arcanoid.makeRound(this,roundNumber)
         //this.bricks = arcanoid.makeBricks(this,bricks_list)
         this.ball = new arcanoid.Ball(this)
     }

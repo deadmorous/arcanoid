@@ -101,7 +101,7 @@
             ro = ro + 0.1
         }
         
-        this.bricks = arcanoid.makeBricks(this,bricks_list)
+        gameState.bricks = arcanoid.makeBricks(gameState,bricks_list)
     }
 
     arcanoid.makeRound = makeRound
