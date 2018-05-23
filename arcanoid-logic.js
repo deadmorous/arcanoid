@@ -1,16 +1,23 @@
 (function(){
 
     function Score(gameState){
-        this.score = 0
-        gameState.contactBallBrick.handle(
-       
+        this.currentscore = 0
+        arcanoid.GamePainter.created.handle(function(painter) {
+            gameState.contactBallBrick.handle(
+                updateScore.bind(painter))}
         )}
+
+        function updateScore(){
+            var newscore = this.state.score
+            newscore.currentscore += 1
+            this.htmlscore.text("Score: "+ newscore.currentscore)
+        }
         
         function drawScore(){
         
-        this.score = $('<div>')
+        this.htmlscore = $('<div>')
             .addClass('score')
-            .text('Score')
+            .text("Score: ")
             .appendTo(this.container)
     }
 
