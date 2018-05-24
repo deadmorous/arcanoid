@@ -27,21 +27,56 @@
         arcanoid.GamePainter.created.handle(
             function(painter){
                 gameState.contactBallBrick.handle(
-                    function(brick_num,brick_side) {
+                    function(brick_num,brick_side,corner_type) {
                         var brick = painter.state.bricks[brick_num]
                         brick.brickElement.addClass('dying-brick')
                         setTimeout(function() {
                             brick.brickElement.remove()
-                            painter.state.bricks.splice(brick_num,1)
                             }, 200)
                         // painter.paint();
+                        var brick_width = $('div.brick').outerWidth()/$('#game').width();
+                        var brick_height = $('div.brick').outerHeight()/$('#game').height();
                         switch(brick_side)
                         {
                             case 'up-down': //contact with upper or lower side of brick 
-                                painter.state.ball.speed[1] = -painter.state.ball.speed[1]
+                                painter.state.ball.speed[1] = -painter.state.ball.speed[1];
+                                painter.state.bricks.splice(brick_num,1);
                                 break;
                             case 'left-right': //contact with left or right side of brick
-                                painter.state.ball.speed[0] = -painter.state.ball.speed[0]
+                                painter.state.ball.speed[0] = -painter.state.ball.speed[0];
+                                painter.state.bricks.splice(brick_num,1);
+                                break;
+                            case 'corner':
+                                switch(corner_type)
+                                {
+                                    case 'top-right':
+                                        var x1 = painter.state.bricks[brick_num].pos_x + brick_width;
+                                        var y1 = painter.state.bricks[brick_num].pos_y;
+                                        break;
+                                    case 'top-left':
+                                        var x1 = painter.state.bricks[brick_num].pos_x;
+                                        var y1 = painter.state.bricks[brick_num].pos_y;
+                                        break;
+                                    case 'bottom-left':
+                                        var x1 = painter.state.bricks[brick_num].pos_x;
+                                        var y1 = painter.state.bricks[brick_num].pos_y + brick_height;
+                                        break;
+                                    case 'bottom-right':
+                                        var x1 = painter.state.bricks[brick_num].pos_x + brick_width    ;
+                                        var y1 = painter.state.bricks[brick_num].pos_y + brick_height;
+                                        break;
+                                }
+                                var x2 = painter.state.ball.pos[0];
+                                var y2 = painter.state.ball.pos[1];
+                                var n = unitVector(x1,y1,x2,y2);
+                                var v_x = painter.state.ball.speed[0];
+                                var v_y = painter.state.ball.speed[1];
+                                // debugger
+                                var a = n.x*v_y - n.y*v_x;
+                                var b = n.x*v_x + n.y*v_y;
+                                painter.state.ball.speed[0] = -a*n.y - b*n.x;
+                                painter.state.ball.speed[1] = -b*n.y + a*n.x;
+                                painter.state.bricks.splice(brick_num,1);
                                 break;
                         }
                     }
@@ -49,6 +84,14 @@
             }
         )
         return array_of_bricks;
+    }
+
+    function unitVector(x1,y1,x2,y2)
+    {
+        var distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        var x = (x2-x1)/distance;
+        var y = (y2-y1)/distance;
+        return {'x':x,'y':y};
     }
 
     function drawBricks()
