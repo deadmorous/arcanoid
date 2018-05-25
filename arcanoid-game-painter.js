@@ -13,7 +13,7 @@
         GamePainter.prototype.itemPainters.push(itemPainter)
     }
 
-    GamePainter.prototype.toScreen = function(x,y) {
+   GamePainter.prototype.toScreen = function(x,y) {
         var o = this.container.offset()
         return {
             left: o.left + this.container.width() * x,
@@ -22,8 +22,8 @@
     }
 
     GamePainter.prototype.widthToScreen = function(w) {
-        return this.container.width() * w
-    }
+       return this.container.width() * w
+   }
 
     GamePainter.prototype.heightToScreen = function(h) {
         return this.container.height() * h
