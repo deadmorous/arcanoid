@@ -1,33 +1,19 @@
 .brick{
-    /* background-color: blueviolet;*/
-    /*
-    background:url(http://kartinki.info/uploads/posts/2017-01/1483646346_2578.gif) 5% 5% fixed; 
-    background-size: cover;
-    background-image: url(http://kartinki.info/uploads/posts/2017-01/1483646346_2578.gif); 
-    background-repeat: no-repeat;
-    */
-    
+    background: chartreuse;
     position: fixed;
     top: 40px;
     left: 20px;
     width: 10%;
     height: 10%;
-    border:1px solid black
+    border:1px solid black;
 }
 
-/* .dying-brick {
-    background:url(http://kartinki.info/uploads/posts/2017-01/1483646346_2578.gif) 5% 5% fixed; 
-    background-size: cover;
-}
-    */
-#test-brick {
-    position: fixed;
+.bang-brick {
+    background-image: url('explosion.gif');
+    margin: auto;
     width: 600px;
     height: 407px;
-    left: 12.5%;
-    top: 12.5%;
-    background-image: url('explosion.gif'); 
-    border: 3px solid red;
+    
+    
     background-repeat: no-repeat;
-    background-position: center;
 }
