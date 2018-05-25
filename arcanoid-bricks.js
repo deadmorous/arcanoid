@@ -29,7 +29,6 @@
                 gameState.contactBallBrick.handle(
                     function(brick_num,brick_side) {
                         var brick = painter.state.bricks[brick_num]
-                        brick.brickElement.removeClass('brick')
                         brick.brickElement.addClass('bang-brick')
                         setTimeout(function() {
                             brick.brickElement.remove()
@@ -54,7 +53,6 @@
 
     function drawBricks()
     {
-        
         for(var i = 0;i<this.state.bricks.length;++i){
             var brick = this.state.bricks[i]
             brick.brickElement = $('<div>').addClass('brick');
