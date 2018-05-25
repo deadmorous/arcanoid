@@ -1,12 +1,5 @@
 .brick{
-    /* background-color: blueviolet;*/
-    /*
-    background:url(http://kartinki.info/uploads/posts/2017-01/1483646346_2578.gif) 5% 5% fixed; 
-    background: chartreuse;
-    background-image: url(http://kartinki.info/uploads/posts/2017-01/1483646346_2578.gif); 
-    background-repeat: no-repeat;
-    */
-    
+    background-color: chartreuse;
     position: fixed;
     top: 40px;
     left: 20px;
