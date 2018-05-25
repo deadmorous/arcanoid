@@ -29,6 +29,7 @@
                 gameState.contactBallBrick.handle(
                     function(brick_num,brick_side) {
                         var brick = painter.state.bricks[brick_num]
+                        brick.brickElement.removeClass('brick')
                         brick.brickElement.addClass('bang-brick')
                         setTimeout(function() {
                             brick.brickElement.remove()
