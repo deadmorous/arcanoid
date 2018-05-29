@@ -8,14 +8,20 @@
     {
         this.pos_x = pos_x;
         this.pos_y = pos_y;
+
     }
+
 
     /*
     Constructor of array of bricks
     INPUT[brics_list]: array of objects with  bricks coordinates
     */
+    
     function makeBricks(gameState,bricks_list)
     {
+       
+                
+        
         var array_of_bricks = [];
         for(var i=0;i<bricks_list.length;++i){
             var pos_x = bricks_list[i]['x'];
@@ -28,9 +34,13 @@
             function(painter){
                 gameState.contactBallBrick.handle(
                     function(brick_num,brick_side) {
+                        
                         var brick = painter.state.bricks[brick_num]
                         brick.brickElement.removeClass('brick')
-                        brick.brickElement.addClass('bang-brick')
+                        brick.brickElement.addClass('bang-brick');
+                        pos_x = brick.pos_x;
+                        pos_y = brick.pos_y;
+                        //brick.brickElement.offset(painter.toScreen(pos_x,pos_y));
                         setTimeout(function() {
                             brick.brickElement.remove()
                             painter.state.bricks.splice(brick_num,1)
