@@ -16,21 +16,34 @@
         this.paddle = new arcanoid.Paddle(this)
         this.bricks = arcanoid.makeBricks(this,bricks_list)
         this.ball = new arcanoid.Ball(this)
-        this.score = new arcanoid.Score(this)
     }
     GameState.prototype.next = function(dt)
     {
         if (this.paddle.speed != 0) {
             this.paddle.pos += this.paddle.speed*dt
+
+            
+            var paddle_width =  $('.paddle').width() / $('#game').width();
+            
+            if (this.paddle.pos < 0) this.paddle.pos = 0;
+            if (this.paddle.pos + paddle_width > 1) this.paddle.pos = 1 - paddle_width;
+
             this.paddleMoved.raise()
         }
+
         if (!(this.ball.speed[0] === 0 && this.ball.speed[1] === 0)) {
+            
             this.ball.pos[0] += this.ball.speed[0]*dt
+
+          
             this.ball.pos[1] += this.ball.speed[1]*dt
+           
             this.ballMoved.raise()
         }
+
         //conatact ball adn brick check and handling
-        checkContactBallBrick.call(this); 
+        checkContactBallBrick.call(this);
+        checkContactBallPaddle.call(this);
     }
 
     function checkContactBallBrick()
@@ -75,6 +88,28 @@
                 }
             }
         }        
+    }
+
+
+    
+    function checkContactBallPaddle()
+    {
+        
+        var ball_height = $('div.ball').height()/$('#game').height();
+
+        var paddle_width =  $('.paddle').width() / $('#game').width();
+        var paddle_height =  $('.paddle').height() / $('#game').height();
+
+        
+        if (this.ball.pos[1] + ball_height / 2 >= 1 - paddle_height) {
+            
+            var paddle_left = this.paddle.pos;
+            var paddle_right = this.paddle.pos + paddle_width;
+
+            if (paddle_left <= this.ball.pos[0] && this.ball.pos[0] <= paddle_right) {
+                this.ball.speed[1] = -Math.abs(this.ball.speed[1]);
+            } 
+        }
     }
 
     arcanoid.GameState = GameState
