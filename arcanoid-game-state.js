@@ -1,7 +1,7 @@
 (function() {
     function GameState()
     {
-        var roundNumber = 9;
+        var roundNumber = 5;
         // Important: Events are created first!
         this.paddleMoved = new arcanoid.Event
         this.ballMoved = new arcanoid.Event
