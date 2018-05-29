@@ -10,9 +10,9 @@
 
 .bang-brick {
     background-image: url('explosion.gif');
-    margin: auto;
-    width: 600px;
-    height: 407px;
+    position: fixed;
+    width: 50%;
+    height: 50%;
     
     
     background-repeat: no-repeat;
