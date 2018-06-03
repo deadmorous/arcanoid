@@ -8,9 +8,11 @@
     border:1px solid black;
 }
 
-.bang-brick {
+.bangbrick {
     background-image: url('explosion.gif');
     position: fixed;
+    top: 40px;
+    left: 20px;
     width: 50%;
     height: 50%;
     
