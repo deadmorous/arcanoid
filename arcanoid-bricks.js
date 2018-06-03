@@ -37,10 +37,8 @@
                         
                         var brick = painter.state.bricks[brick_num]
                         brick.brickElement.removeClass('brick')
-                        brick.brickElement.addClass('bang-brick');
-                        pos_x = brick.pos_x;
-                        pos_y = brick.pos_y;
-                        //brick.brickElement.offset(painter.toScreen(pos_x,pos_y));
+                        brick.brickElement.addClass('bangbrick');
+                        drawBang(brick,painter)
                         setTimeout(function() {
                             brick.brickElement.remove()
                             painter.state.bricks.splice(brick_num,1)
@@ -72,6 +70,14 @@
             pos_y = brick.pos_y;
             brick.brickElement.offset(this.toScreen(pos_x,pos_y));
         }
+    }
+
+    function drawBang (bangbrick,p){
+        
+        bangbrick.brickElement.appendTo(p.container);
+        pos_x = bangbrick.pos_x;
+        pos_y = bangbrick.pos_y;
+        bangbrick.brickElement.offset(p.toScreen(pos_x*0.75,pos_y*0.75))
     }
 
     arcanoid.GamePainter.addItemPainter(drawBricks)
