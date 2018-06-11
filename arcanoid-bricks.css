@@ -1,5 +1,6 @@
 .brick{
-    background-color: chartreuse;
+    background-image: url('brick.jpg');
+    background-size: cover;
     position: fixed;
     top: 40px;
     left: 20px;

@@ -26,7 +26,7 @@
     {
         this.paddle = $('<div>')
             .addClass('paddle')
-            .text('TODO')
+            
             .appendTo(this.container)
         positionPaddle.call(this)
     }

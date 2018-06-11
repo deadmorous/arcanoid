@@ -1,5 +1,7 @@
 .ball {
-    background-color: green;
+    
+    background-image: url("ball.png");
+    background-size:contain; 
     position: fixed;
     border-radius: 50%;
 }

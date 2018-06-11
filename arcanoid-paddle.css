@@ -1,5 +1,7 @@
 .paddle {
-    background-color: red;
+    
+    background-image: url("paddle.png");
+    background-size: contain;
     position: fixed;
     bottom: 5px;
     width: 10%;
