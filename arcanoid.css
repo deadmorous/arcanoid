@@ -19,3 +19,16 @@ body {
     left: 0;
     right: 0;
 }
+
+.score
+{
+    position: fixed;
+    left: 0;
+    right: 70ex;
+    top: 0;
+    height: 5ex;
+    text-align: left;
+    
+    color: red;
+    font-size: 100%;
+}

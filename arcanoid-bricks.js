@@ -33,12 +33,8 @@
         arcanoid.GamePainter.created.handle(
             function(painter){
                 gameState.contactBallBrick.handle(
-<<<<<<< HEAD
-                    function(brick_num,brick_side,corner_type) {
-=======
                     function(brick_num,brick_side) {
                         
->>>>>>> Bang realize
                         var brick = painter.state.bricks[brick_num]
                         brick.brickElement.removeClass('brick')
                         brick.brickElement.addClass('bangbrick');
