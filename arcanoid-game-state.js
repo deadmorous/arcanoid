@@ -205,7 +205,9 @@
             var paddle_right = this.paddle.pos + paddle_width;
 
             if (paddle_left <= this.ball.pos[0] && this.ball.pos[0] <= paddle_right) {
-                this.ball.speed[1] = -Math.abs(this.ball.speed[1]);
+               // this.ball.speed[1] = -Math.abs(this.ball.speed[1]);
+               this.ball.speed[1] = 0
+               $('#header').text("Game Over. Press F5 to restart")
             } 
 
         }
