@@ -10,8 +10,8 @@
         this.pos_y = pos_y;
 
     }
-
-
+   
+    
     /*
     Constructor of array of bricks
     INPUT[brics_list]: array of objects with  bricks coordinates
@@ -20,7 +20,6 @@
     function makeBricks(gameState,bricks_list)
     {
        
-                
         
         var array_of_bricks = [];
         for(var i=0;i<bricks_list.length;++i){
@@ -126,4 +125,5 @@
     arcanoid.GamePainter.addItemPainter(drawBricks)
 
     arcanoid.makeBricks = makeBricks
+    arcanoid.drawBricks = drawBricks
 })()

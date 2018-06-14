@@ -7,11 +7,15 @@
         this.ballMoved = new arcanoid.Event
         this.contactBallBrick = new arcanoid.Event
         
+        
         this.paddle = new arcanoid.Paddle(this)
         arcanoid.makeRound(this,roundNumber)
         this.ball = new arcanoid.Ball(this)
         this.score = new arcanoid.Score(this)
+        this.rounds = new arcanoid.Rounds(this)
+              
     }
+    
     GameState.prototype.next = function(dt)
     {
         if (this.paddle.speed != 0) {
@@ -212,6 +216,6 @@
 
         }
     }
-
+   
     arcanoid.GameState = GameState
 })()
