@@ -3,11 +3,8 @@
 function Rounds (gameState){
     this.numberRound = 1
     arcanoid.GamePainter.created.handle(function(painter){
-        gameState.contactBallBrick.handle(function(){
-            newRound.bind(painter)
-            }
-        )}
-    )
+        gameState.contactBallBrick.handle(newRound.bind(painter))
+    })
 }   
 
 function newRound(){
@@ -15,7 +12,12 @@ function newRound(){
     if(brick == 0){
         var round = this.state.rounds
         round.numberRound +=1
-        arcanoid.makeRound(this,round.numberRound)
+        if (round.numberRound == 11){
+            round.numberRound = 1
+        }
+        arcanoid.makeRound(this.state,round.numberRound)
+        
+        this.paint()
         }
 }
 
