@@ -16,8 +16,8 @@ function newRound(){
             round.numberRound = 1
         }
         arcanoid.makeRound(this.state,round.numberRound)
-       // this.state.ball.pos = [0.55, 0.9]
-       // this.state.ball.speed = [0.1, -0.1]
+        this.state.ball.pos = [0.55, 0.9]
+        this.state.ball.speed = [0.1, -0.1]
         this.paint()
         }
 }
