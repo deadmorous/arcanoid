@@ -1,4 +1,4 @@
-﻿(function() {
+(function() {
     function GameState()
     {
         var roundNumber = 1;
@@ -20,10 +20,19 @@
     {
         if (this.paddle.speed != 0) {
             this.paddle.pos += this.paddle.speed*dt
-            var paddle_width =  $('.paddle').width() / $('#game').width();        
+
+
+            //Ширина ракетки.
             var paddle_width =  $('.paddle').width() / $('#game').width();
+            //Предотвращение выхода ракетки за границы поля.
+
+            
+            var paddle_width =  $('.paddle').width() / $('#game').width();
+            
+
             if (this.paddle.pos < 0) this.paddle.pos = 0;
             if (this.paddle.pos + paddle_width > 1) this.paddle.pos = 1 - paddle_width;
+
             this.paddleMoved.raise()
         }
 
@@ -148,107 +157,72 @@
         }        
     }
 
-   
+    function distance(x1,y1,x2,y2)
+    {
+        return Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+    }
+
+
     /**
-     * Contact of ball with paddle
+     * Обработка контакта ракетки с мячом.
      */
-   
     function checkContactBallPaddle()
     {
-        var ball_width = $('div.ball').width()/$('#game').width();
+        //Размеры мяча.
         var ball_height = $('div.ball').height()/$('#game').height();
+
+        //Размеры ракетки.
         var paddle_width =  $('.paddle').width() / $('#game').width();
         var paddle_height =  $('.paddle').height() / $('#game').height();
-        var paddle_left = this.paddle.pos;
-        var paddle_right = this.paddle.pos + paddle_width;
-        var paddle_center = this.paddle.pos + paddle_width / 2;
-		var ball_pos_x = this.ball.pos[0];
-		
-        //Contact with top side of paddle
-        if (this.ball.pos[1] + ball_height / 2 >= 1 - paddle_height && this.ball.speed[1]>0) {
-            if (paddle_left <= this.ball.pos[0] && this.ball.pos[0] <= paddle_right) {		
-				var ksi = 2 * (ball_pos_x - paddle_center) / paddle_width;
-				var psi = Math.PI / 12 * ksi;
-				var nx = Math.sin(psi);
-				var ny = -Math.sqrt(1-nx*nx);
-				var v_x = this.ball.speed[0];
-				var v_y = this.ball.speed[1];
-				var a = nx*v_y - ny*v_x;
-				var b = nx*v_x + ny*v_y;
-				this.ball.speed[0] = -a*ny - b*nx;
-				this.ball.speed[1] = -b*ny + a*nx;
-            } 
+
+        //Если самая низшая точка ушла ниже самой высшей точки ракетки, то...
+        if (this.ball.pos[1] + ball_height / 2 >= 1 - paddle_height) {
+            //Границы ракетки по оси OX.
+            var paddle_left = this.paddle.pos;
+            var paddle_right = this.paddle.pos + paddle_width;
+
+            //Если мяч коснулся ракетки, то...
+            if (paddle_left <= this.ball.pos[0] && this.ball.pos[0] <= paddle_right) {
+                this.ball.speed[1] = -Math.abs(this.ball.speed[1]);
+            } /*Ball isn't touch paddle*/
+            else {
+                this.ball.speed[0] = Math.abs(this.ball.speed[0]);
+                this.ball.speed[1] = -Math.abs(this.ball.speed[1]);
+                this.ball.pos[0] = this.paddle.pos + paddle_width / 2;
+                this.ball.pos[1] = 1 - paddle_height - ball_height / 2;
+            }
         }
-        //Contact with right and left sides of paddle
-        if (this.ball.pos[1] >= 1 - paddle_height) {
-            if (paddle_right >= this.ball.pos[0] - ball_width / 2 && paddle_left <= this.ball.pos[0] + ball_width / 2)
-            {
-                if (paddle_center >= this.ball.pos[0])
-                {
-                    this.ball.pos[0] = paddle_left - ball_width / 2;
-                    this.ball.speed[0] = -this.ball.speed[0];
-                }
-                else
-                {
-                    this.ball.pos[0] = paddle_right + ball_width / 2;
-                    this.ball.speed[0] = -this.ball.speed[0];
-                }
-            } 
-        }
+    }
+    
+    function checkContactBallPaddle()
+    {
+        
+        var ball_height = $('div.ball').height()/$('#game').height();
+
+        var paddle_width =  $('.paddle').width() / $('#game').width();
+        var paddle_height =  $('.paddle').height() / $('#game').height();
 
         
-        //Contact with right corner
-        if(this.ball.radius > distance(this.ball.pos[0],this.ball.pos[1],paddle_right,1-paddle_height))              
-        {
-        var x1 = this.ball.pos[0];
-        var y1 = this.ball.pos[1];
-        var x2 = paddle_right;
-        var y2 = 1-paddle_height;
-        var n = unitVector(x1,y1,x2,y2);
-        var v_x = this.ball.speed[0];
-        var v_y = this.ball.speed[1];
-        var a = n.x*v_y - n.y*v_x;
-        var b = n.x*v_x + n.y*v_y;
-        this.ball.speed[0] = -a*n.y - b*n.x;
-        this.ball.speed[1] = -b*n.y + a*n.x;
-        }
-		
-		//Contact with left corner
-        if(this.ball.radius > distance(this.ball.pos[0],this.ball.pos[1],paddle_left, 1-paddle_height))              
-        {
-        var x1 = this.ball.pos[0];
-        var y1 = this.ball.pos[1];
-        var x2 = paddle_left;
-        var y2 = 1-paddle_height;
-        var n = unitVector(x1,y1,x2,y2);
-        var v_x = this.ball.speed[0];
-        var v_y = this.ball.speed[1];
-        var a = n.x*v_y - n.y*v_x;
-        var b = n.x*v_x + n.y*v_y;
-        this.ball.speed[0] = -a*n.y - b*n.x;
-        this.ball.speed[1] = -b*n.y + a*n.x;
-        }
-        
+        if (this.ball.pos[1] + ball_height / 2 >= 1 - paddle_height) {
+            
+            var paddle_left = this.paddle.pos;
+            var paddle_right = this.paddle.pos + paddle_width;
 
-        //Game over
-        if (this.ball.pos[1] + ball_height/2 >= 1.2 - paddle_height){
+            if (paddle_left <= this.ball.pos[0] && this.ball.pos[0] <= paddle_right) {
+               this.ball.speed[1] = -Math.abs(this.ball.speed[1]);
+            } 
+            
+                
+            
+            
+
+        }
+        if (this.ball.pos[1] + ball_height/2 >= 1.1 - paddle_height){
             this.ball.speed[1] = 0
             this.ball.speed[0] = 0
             $('#header').text("Game Over. Press F5 to restart")
         }
     }
-    function unitVector(x1,y1,x2,y2)
-    {
-        var distance = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-        var x = (x2-x1)/distance;
-        var y = (y2-y1)/distance;
-        return {'x':x,'y':y};
-    }
-	
-	
-    function distance(x1,y1,x2,y2)
-    {
-        return Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-    }
+   
     arcanoid.GameState = GameState
 })()

@@ -1,12 +1,13 @@
 .brick{
     background-image: url('brick.jpg');
     background-size: cover;
-    position: fixed;
+    position: absolute;
     top: 40px;
     left: 20px;
     width: 10%;
     height: 10%;
-    border:1px solid black;
+    border: 1px solid black;
+    box-sizing: border-box;
 }
 
 .bangbrick {

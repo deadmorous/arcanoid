@@ -1,7 +1,8 @@
 (function() {
-    function GamePainter(state, container)
+    function GamePainter(state, containerWrapper, container)
     {
         this.state = state
+        this.containerWrapper = containerWrapper
         this.container = container
         $(window).resize(GamePainter.prototype.paint.bind(this))
         GamePainter.created.raise(this)
@@ -31,6 +32,10 @@
 
     GamePainter.prototype.paint = function()
     {
+        var squareSize = Math.min(this.containerWrapper.width(), this.containerWrapper.height());
+        this.container.width(squareSize)
+        this.container.height(squareSize)
+
         var self = this
         self.container.html('')
         self.itemPainters.forEach((itemPainter)=>itemPainter.call(self))

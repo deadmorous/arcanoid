@@ -8,7 +8,7 @@
                 positionPaddle.bind(painter))
         })
     }
-    Paddle.speedInc = 0.2
+    Paddle.speedInc = 0.5
     Paddle.prototype.incSpeed = function() {
         this.speed += Paddle.speedInc
     }
@@ -19,7 +19,7 @@
 
     function positionPaddle()
     {
-        this.paddle.offset(this.toScreen(this.state.paddle.pos, 0.9))
+        this.paddle.offset(this.toScreen(this.state.paddle.pos, 0.97))
     }
 
     function drawPaddle()

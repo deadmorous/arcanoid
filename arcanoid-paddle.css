@@ -1,9 +1,10 @@
 .paddle {
     
     background-image: url("paddle.png");
+    background-repeat: no-repeat;
     background-size: contain;
-    position: fixed;
+    position: absolute;
     bottom: 5px;
     width: 10%;
-    height: 10%;
+    height: 3%;
 }

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var gameState = new arcanoid.GameState
-    var painter = new arcanoid.GamePainter(gameState, $('#game'))
+    var painter = new arcanoid.GamePainter(gameState, $('#game-wrapper'), $('#game'))
     painter.paint()
 
     var timerDelta = 0.04
